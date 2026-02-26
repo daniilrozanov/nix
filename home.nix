@@ -76,6 +76,26 @@
     FCEDIT = "nvim";
   };
 
+  editorconfig = {
+    enable = true;
+    settings = {
+      "*" = {
+        end_of_line = "lf";
+        insert_final_newline = true;
+        trim_trailing_whitespace = true;
+        charset = "utf-8";
+        indent_size = 4;
+        indent_style = "space";
+      };
+      "Makefile" = {
+        indent_style = "tab";
+      };
+      "*.{nix}" = {
+        indent_size = 2;
+      };
+    };
+  };
+
   programs = {
     bash = {
       enable = true;

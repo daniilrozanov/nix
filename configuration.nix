@@ -175,6 +175,7 @@
     liberation_ttf
     nerd-fonts.droid-sans-mono
     nerd-fonts.fira-code
+    nerd-fonts.jetbrains-mono
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji

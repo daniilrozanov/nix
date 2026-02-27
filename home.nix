@@ -135,6 +135,8 @@
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-ui-select-nvim
+        diffview-nvim
+        neogit
         nvim-treesitter-parsers.nix
         nvim-treesitter-parsers.c
         nvim-treesitter-parsers.cpp

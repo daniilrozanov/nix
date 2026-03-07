@@ -14,12 +14,12 @@
       telegram-desktop
       imv
       mpv
-      ncmpcpp
       img
       chromium
       hyprshot
       keepassxc
       thunderbird
+      cloc
       jq
       ripgrep
       fzf
@@ -29,6 +29,13 @@
       pavucontrol # is there something for pipewire?
       localsend
       zathura
+      transmission_4-gtk
+      euphonica # buggy mpd gui client, haven't found any better yet
+      gimp
+
+      # cursor themes
+      volantes-cursors
+      bibata-cursors
 
       # Rofi plugins
       rofimoji
@@ -53,11 +60,11 @@
 
       # This probably need to go to shell.nix
       gnumake
-      cmake
-      ninja
-      bear
-      valgrind
-      perf
+      # cmake
+      # ninja
+      # bear
+      # valgrind
+      # perf
     ];
   };
 
@@ -90,7 +97,7 @@
       "Makefile" = {
         indent_style = "tab";
       };
-      "*.{nix}" = {
+      "*.{nix,lua}" = {
         indent_size = 2;
       };
     };
@@ -144,7 +151,6 @@
         nvim-treesitter-parsers.hyprlang
         # nvim-treesitter-parsers.llvm
         nvim-treesitter-parsers.asm
-        nvim-treesitter-parsers.asm
         nvim-treesitter-parsers.lua
         nvim-treesitter-parsers.luadoc
         nvim-treesitter-parsers.fennel
@@ -194,6 +200,14 @@
         tree_view = 1;
       };
     };
+    ncmpcpp = {
+      enable = true;
+      settings = {
+        mpd_host = "localhost";
+        mpd_port = "6600";
+        mpd_music_dir = "\${XDG_MUSIC_DIR}";
+      };
+    };
   };
 
   home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/hypr";
@@ -202,6 +216,7 @@
   home.file.".config/mako".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/mako";
   home.file.".config/rofi".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/rofi";
   home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/nvim";
+  home.file.".config/mpd".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/mpd";
 
   services.udiskie = {
     enable = true;
@@ -228,9 +243,11 @@
 
   services.gpg-agent.enable = true;
 
-  xdg.userDirs = {
-    enable = true;
-    createDirectories = true;
+  xdg = {
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+    };
   };
 
   wayland.windowManager.hyprland.systemd.enable = false;

@@ -32,6 +32,9 @@
       transmission_4-gtk
       euphonica # buggy mpd gui client, haven't found any better yet
       gimp
+      easyeffects
+      mpc
+      pinentry-all
 
       # cursor themes
       volantes-cursors
@@ -53,13 +56,11 @@
       lua-language-server
       stylua
       bash-language-server
-      clang-tools
       python3
       shfmt
       fnlfmt
 
       # This probably need to go to shell.nix
-      gnumake
       # cmake
       # ninja
       # bear
@@ -106,6 +107,11 @@
   programs = {
     bash = {
       enable = true;
+      historyControl = [
+        "ignoreboth"
+        "erasedups"
+      ];
+      historySize = 10000;
       profileExtra = ''if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then exec uwsm start default; fi'';
     };
     zsh = {
@@ -147,6 +153,7 @@
         nvim-treesitter-parsers.nix
         nvim-treesitter-parsers.c
         nvim-treesitter-parsers.cpp
+        nvim-treesitter-parsers.slang
         nvim-treesitter-parsers.bash
         nvim-treesitter-parsers.hyprlang
         # nvim-treesitter-parsers.llvm
@@ -185,6 +192,11 @@
           email = "daniil@rozanov.info";
           name = "Daniil Rozanov";
         };
+        gpg.program = "gpg2";
+      };
+      signing = {
+        key = "BDC40DA523D2E73A";
+        signByDefault = true;
       };
     };
     direnv = {
@@ -198,14 +210,6 @@
       enable = true;
       settings = {
         tree_view = 1;
-      };
-    };
-    ncmpcpp = {
-      enable = true;
-      settings = {
-        mpd_host = "localhost";
-        mpd_port = "6600";
-        mpd_music_dir = "\${XDG_MUSIC_DIR}";
       };
     };
   };
@@ -241,7 +245,10 @@
 
   services.ssh-agent.enable = true;
 
-  services.gpg-agent.enable = true;
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-curses;
+  };
 
   xdg = {
     userDirs = {

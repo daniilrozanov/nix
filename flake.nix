@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -11,7 +12,12 @@
   };
 
   outputs =
-    { nixpkgs, home-manager, ... }:
+    {
+      nixpkgs,
+      apple-silicon,
+      home-manager,
+      ...
+    }@inputs:
     let
       system = "aarch64-linux";
     in
@@ -19,6 +25,7 @@
 
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = { inherit inputs; };
         modules = [ ./configuration.nix ];
       };
       homeConfigurations.chell = home-manager.lib.homeManagerConfiguration {

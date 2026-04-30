@@ -74,7 +74,7 @@
     ll = "ls -lh";
     la = "ls -lah";
     v = "nvim";
-    nis = "sudo nixos-rebuild switch --flake .";
+    nis = "sudo nixos-rebuild switch --flake '.?submodules=1'";
     hms = "home-manager switch --flake .";
     md = "mkdir -p";
   };

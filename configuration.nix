@@ -2,6 +2,7 @@
   config,
   lib,
   pkgs,
+  pkgs-unstable,
   inputs,
   ...
 }:
@@ -119,51 +120,55 @@
     ];
   };
 
-  environment.systemPackages = with pkgs; [
-    # CLI
-    fastfetch
-    tree
-    htop
-    playerctl
-    git
-    tmux
-    unzip
-    vim
-    w3m
-    wget
-    killall
-    gnupg
-    jq
+  environment.systemPackages =
+    with pkgs;
+    [
+      # CLI
+      fastfetch
+      tree
+      htop
+      playerctl
+      git
+      tmux
+      unzip
+      vim
+      w3m
+      wget
+      killall
+      gnupg
+      jq
 
-    # System
-    bluez
-    bluez-alsa
-    bluez-tools
-    brightnessctl
-    wl-clipboard
-    keyd
-    libnotify
+      # System
+      bluez
+      bluez-alsa
+      bluez-tools
+      brightnessctl
+      wl-clipboard
+      keyd
+      libnotify
 
-    # GUI essentials
-    mako # or dunst
-    rofi
-    swww
-    waybar
-    grimblast
-    hyprpolkitagent # may be outdated soon
-    hyprpaper
-    hypridle
-    hyprlock
-    hyprcursor
+      # GUI essentials
+      mako # or dunst
+      rofi
+      swww
+      waybar
+      grimblast
 
-    # Default GUI apps
-    firefox
-    vlc
-    kitty
+      # Default GUI apps
+      firefox
+      vlc
+      kitty
 
-    # Other
-    home-manager
-  ];
+      # Other
+      home-manager
+    ]
+    ++ [
+      pkgs-unstable.hyprpolkitagent # may be outdated soon
+      pkgs-unstable.hyprpaper
+      pkgs-unstable.hypridle
+      pkgs-unstable.hyprlock
+      pkgs-unstable.hyprcursor
+    ];
 
   fonts.packages = with pkgs; [
     dina-font
@@ -186,11 +191,11 @@
   #   enableSSHSupport = true;
   # };
   programs.hyprland = {
-    # add to home config later
     # wayland.windowManager.hyprland.systemd.enable = false;
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
+    package = pkgs-unstable.hyprland;
   };
 
   programs.uwsm = {

@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 {
   home = {
     username = "chell";
@@ -9,7 +14,7 @@
       htop
       firefox
       nnn
-      nemo
+      pcmanfm
       calibre
       telegram-desktop
       imv
@@ -67,21 +72,27 @@
       # valgrind
       # perf
     ];
-  };
 
-  home.shell.enableShellIntegration = true;
-  home.shellAliases = {
-    ll = "ls -lh";
-    la = "ls -lah";
-    v = "nvim";
-    nis = "sudo nixos-rebuild switch --flake '.?submodules=1'";
-    hms = "home-manager switch --flake .";
-    md = "mkdir -p";
-  };
-  home.sessionVariables = {
-    VISUAL = "neovide";
-    EDITOR = "nvim";
-    FCEDIT = "nvim";
+    shell.enableShellIntegration = true;
+    shellAliases = {
+      ll = "ls -lh";
+      la = "ls -lah";
+      v = "nvim";
+      nis = "sudo nixos-rebuild switch --flake '.?submodules=1'";
+      hms = "home-manager switch --flake .";
+      md = "mkdir -p";
+    };
+    sessionVariables = {
+      VISUAL = "neovide";
+      EDITOR = "nvim";
+      FCEDIT = "nvim";
+    };
+    pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 20;
+    };
   };
 
   editorconfig = {
@@ -184,6 +195,7 @@
         cmake
         gnumake
       ];
+      package = pkgs-unstable.neovim-unwrapped;
     };
     git = {
       enable = true;
@@ -201,9 +213,8 @@
     };
     direnv = {
       enable = true;
-      # enableShellIntegration makes deal
-      # enableBashIntegration = true;
-      # enableZshIntegration = true;
+      enableBashIntegration = true;
+      enableZshIntegration = true;
       nix-direnv.enable = true;
     };
     htop = {
@@ -254,6 +265,32 @@
     userDirs = {
       enable = true;
       createDirectories = true;
+    };
+  };
+
+  gtk = {
+    enable = true;
+    colorScheme = "dark";
+    cursorTheme = {
+      package = pkgs.bibata-cursors;
+      name = "Bibata-Modern-Classic";
+      size = 20;
+    };
+    iconTheme = {
+      package = pkgs.arc-icon-theme;
+      name = "Arc";
+    };
+    theme = {
+      package = pkgs.arc-theme;
+      name = "Arc";
+    };
+    gtk3.extraConfig = {
+      "gtk-cursor-theme-name" = "Bibata-Modern-Classic";
+    };
+    gtk4.extraConfig = {
+      Settings = ''
+        gtk-cursor-theme-name=Bibata-Modern-Classic
+      '';
     };
   };
 

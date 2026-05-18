@@ -2,14 +2,17 @@
   description = "System configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.11";
 
-    apple-silicon.url = "github:nix-community/nixos-apple-silicon";
+    apple-silicon = {
+      url = "github:nix-community/nixos-apple-silicon";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -17,14 +20,14 @@
   outputs =
     {
       nixpkgs,
-      nixpkgs-unstable,
+      nixpkgs-stable,
       apple-silicon,
       home-manager,
       ...
     }@inputs:
     let
       system = "aarch64-linux";
-      pkgs-unstable = import nixpkgs-unstable {
+      pkgs-stable = import nixpkgs-stable {
         inherit system;
       };
     in
@@ -33,14 +36,14 @@
         inherit system;
         specialArgs = {
           inherit inputs;
-          inherit pkgs-unstable;
+          inherit pkgs-stable;
         };
         modules = [ ./configuration.nix ];
       };
       homeConfigurations.chell = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = {
-          inherit pkgs-unstable;
+          inherit pkgs-stable;
         };
         modules = [ ./home.nix ];
       };

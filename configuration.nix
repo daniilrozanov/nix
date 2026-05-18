@@ -2,7 +2,7 @@
   config,
   lib,
   pkgs,
-  pkgs-unstable,
+  pkgs-stable,
   inputs,
   ...
 }:
@@ -15,8 +15,23 @@
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = false;
+  boot = {
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = false;
+
+    # The only thing that prevents greeter screen from corruption
+    # Force a "quiet" boot sequence and strictly clamp the system log levels
+    kernelParams = [
+      "quiet"
+      "loglevel=3"
+      "systemd.show_status=auto"
+      "rd.udev.log_level=3"
+    ];
+    # Suppress late-stage kernel alerts (like ACPI errors) from printing over the console
+    kernel.sysctl = {
+      "kernel.printk" = "3 3 3 3";
+    };
+  };
 
   hardware.bluetooth = {
     enable = true;
@@ -32,6 +47,7 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
   networking.wireless.iwd = {
     enable = true;
     settings.General.EnableNetworkConfiguration = true;
@@ -39,10 +55,6 @@
 
   # Set your time zone.
   time.timeZone = "Europe/Samara";
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -70,7 +82,7 @@
     enable = true;
     keyboards = {
       macbookKeyboard = {
-        ids = [ "05ac:0342:38ab045b" ];
+        ids = [ "05ac:0342:89b7fedc" ];
         settings = {
           main = {
             capslock = "overload(control, esc)";
@@ -120,55 +132,51 @@
     ];
   };
 
-  environment.systemPackages =
-    with pkgs;
-    [
-      # CLI
-      fastfetch
-      tree
-      htop
-      playerctl
-      git
-      tmux
-      unzip
-      vim
-      w3m
-      wget
-      killall
-      gnupg
-      jq
+  environment.systemPackages = with pkgs; [
+    # CLI
+    fastfetch
+    tree
+    htop
+    playerctl
+    git
+    tmux
+    unzip
+    vim
+    w3m
+    wget
+    killall
+    gnupg
+    jq
 
-      # System
-      bluez
-      bluez-alsa
-      bluez-tools
-      brightnessctl
-      wl-clipboard
-      keyd
-      libnotify
+    # System
+    bluez
+    bluez-alsa
+    bluez-tools
+    brightnessctl
+    wl-clipboard
+    keyd
+    libnotify
 
-      # GUI essentials
-      mako # or dunst
-      rofi
-      swww
-      waybar
-      grimblast
+    # GUI essentials
+    mako # or dunst
+    rofi
+    awww
+    waybar
+    grimblast
+    hyprpolkitagent # may be outdated soon
+    hyprpaper
+    hypridle
+    hyprlock
+    hyprcursor
 
-      # Default GUI apps
-      firefox
-      vlc
-      kitty
+    # Default GUI apps
+    firefox
+    vlc
+    kitty
 
-      # Other
-      home-manager
-    ]
-    ++ [
-      pkgs-unstable.hyprpolkitagent # may be outdated soon
-      pkgs-unstable.hyprpaper
-      pkgs-unstable.hypridle
-      pkgs-unstable.hyprlock
-      pkgs-unstable.hyprcursor
-    ];
+    # Other
+    home-manager
+  ];
 
   fonts.packages = with pkgs; [
     dina-font
@@ -183,23 +191,31 @@
     noto-fonts-color-emoji
   ];
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
   programs.hyprland = {
     # wayland.windowManager.hyprland.systemd.enable = false;
     enable = true;
-    withUWSM = true;
     xwayland.enable = true;
-    package = pkgs-unstable.hyprland;
   };
 
-  programs.uwsm = {
+  services.greetd = {
     enable = true;
+    settings = {
+      default_session = {
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland";
+        user = "greeter";
+      };
+    };
+  };
+  # Bug: systemd logs corrupt greet screen, Code below DOES NOT fixes it
+  systemd.services.greetd.serviceConfig = {
+    Type = "idle";
+    StandardInput = "tty";
+    StandardOutput = "tty";
+    StandardError = "journal";
+    TTYPath = "/dev/tty1";
+    TTYReset = true;
+    TTYVHangup = true;
+    TTYVTDisallocate = true;
   };
 
   nix.gc = {
@@ -224,5 +240,4 @@
   networking.firewall.enable = false;
 
   system.stateVersion = "25.11";
-
 }

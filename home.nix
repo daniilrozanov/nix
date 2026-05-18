@@ -1,14 +1,14 @@
 {
   config,
   pkgs,
-  pkgs-unstable,
+  pkgs-stable,
   ...
 }:
 {
   home = {
     username = "chell";
     homeDirectory = "/home/chell";
-    stateVersion = "25.11";
+    stateVersion = "26.05";
     packages = with pkgs; [
       fastfetch
       htop
@@ -78,7 +78,7 @@
       ll = "ls -lh";
       la = "ls -lah";
       v = "nvim";
-      nis = "sudo nixos-rebuild switch --flake '.?submodules=1'";
+      nis = "sudo nixos-rebuild switch --flake .";
       hms = "home-manager switch --flake .";
       md = "mkdir -p";
     };
@@ -123,13 +123,13 @@
         "erasedups"
       ];
       historySize = 10000;
-      profileExtra = ''if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" = 1 ]; then exec uwsm start default; fi'';
     };
     zsh = {
       enable = true;
     };
     neovim = {
       enable = true;
+      sideloadInitLua = true;
       plugins = with pkgs.vimPlugins; [
         nvim-autopairs
         nvim-bqf
@@ -152,7 +152,7 @@
         mini-nvim
         substitute-nvim
         nvim-surround
-        text-case-nvim
+        # text-case-nvim # Why is this has unfree license??
         toggleterm-nvim
         which-key-nvim
         plenary-nvim
@@ -191,11 +191,8 @@
         nvim-treesitter-parsers.http
       ];
       extraPackages = with pkgs; [
-        gcc
-        cmake
-        gnumake
+        # formatters and stuff probably?
       ];
-      package = pkgs-unstable.neovim-unwrapped;
     };
     git = {
       enable = true;
@@ -221,6 +218,13 @@
       enable = true;
       settings = {
         tree_view = 1;
+      };
+    };
+    kitty = {
+      enable = true;
+      settings = {
+        confirm_os_window_close = -1;
+        background_opacity = 0.8;
       };
     };
   };

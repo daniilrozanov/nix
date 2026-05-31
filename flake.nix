@@ -36,15 +36,11 @@
         inherit system;
         specialArgs = {
           inherit inputs;
-          inherit pkgs-stable;
         };
         modules = [ ./configuration.nix ];
       };
       homeConfigurations.chell = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        extraSpecialArgs = {
-          inherit pkgs-stable;
-        };
         modules = [ ./home.nix ];
       };
       # home-manager.useGlobalPkgs = true;

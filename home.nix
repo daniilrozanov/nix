@@ -14,7 +14,7 @@
       htop
       firefox
       nnn
-      pcmanfm
+      thunar
       calibre
       telegram-desktop
       imv
@@ -37,7 +37,7 @@
       transmission_4-gtk
       euphonica # buggy mpd gui client, haven't found any better yet
       gimp
-      easyeffects
+      # easyeffects
       mpc
       pinentry-all
 
@@ -65,12 +65,7 @@
       shfmt
       fnlfmt
 
-      # This probably need to go to shell.nix
-      # cmake
-      # ninja
-      # bear
-      # valgrind
-      # perf
+      qmk
     ];
 
     shell.enableShellIntegration = true;

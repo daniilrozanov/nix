@@ -42,6 +42,7 @@
       };
     };
   };
+  hardware.keyboard.qmk.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -194,6 +195,7 @@
   programs.hyprland = {
     # wayland.windowManager.hyprland.systemd.enable = false;
     enable = true;
+    withUWSM = true;
     xwayland.enable = true;
   };
 
@@ -201,7 +203,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd 'uwsm start hyprland.desktop'";
         user = "greeter";
       };
     };

@@ -22,7 +22,9 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
-  hardware.asahi.peripheralFirmwareDirectory = ./etc/firmware-apple-m1;
+  hardware.asahi.peripheralFirmwareDirectory = ./etc/m1-firmware;
+  hardware.asahi.extractPeripheralFirmware = true;
+  hardware.asahi.enable = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/7d5607a2-e3c2-4a69-a059-ed5e833c4aec";

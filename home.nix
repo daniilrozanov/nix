@@ -13,6 +13,7 @@
       fastfetch
       htop
       firefox
+      librewolf
       nnn
       thunar
       calibre
@@ -38,6 +39,8 @@
       euphonica # buggy mpd gui client, haven't found any better yet
       gimp
       # easyeffects
+      rapidraw
+      darktable
       mpc
       pinentry-all
 

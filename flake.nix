@@ -32,18 +32,29 @@
       };
     in
     {
-      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.moon = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = {
           inherit inputs;
         };
-        modules = [ ./configuration.nix ];
+        modules = [
+          ./hosts/moon
+          ./modules/nixos
+        ];
       };
       homeConfigurations.chell = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = [ ./home.nix ];
+        modules = [
+          ./users/chell
+          ./modules/home
+        ];
       };
-      # home-manager.useGlobalPkgs = true;
-      # home-manager.useUserPackages = true;
+      homeConfigurations."da.rozanov" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [
+          ./users/da.rozanov
+          ./modules/home
+        ];
+      };
     };
 }

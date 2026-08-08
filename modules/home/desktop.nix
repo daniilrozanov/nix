@@ -149,13 +149,18 @@
       };
     };
 
-    home.file.".config/hypr".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/hypr";
+    home.file.".config/hypr".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/hypr";
     home.file.".config/waybar".source =
-      config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/waybar";
-    home.file.".config/mako".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/mako";
-    home.file.".config/rofi".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/rofi";
-    home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/nvim";
-    home.file.".config/mpd".source = config.lib.file.mkOutOfStoreSymlink "/home/chell/dotfiles/mpd";
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/waybar";
+    home.file.".config/mako".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/mako";
+    home.file.".config/rofi".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/rofi";
+    home.file.".config/nvim".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/nvim";
+    home.file.".config/mpd".source =
+      config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nix/dotfiles/mpd";
 
     wayland.windowManager.hyprland.systemd.enable = false;
   };

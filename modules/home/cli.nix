@@ -34,6 +34,7 @@
     path = "echo -e \${PATH//:/\\\\n}";
     rm = "rm --preserve-root";
     origsh = "ssh localhost";
+    tree = "tree -C";
 
     # TODO: this should be for nixos only
     nis = "sudo nixos-rebuild switch --flake .";

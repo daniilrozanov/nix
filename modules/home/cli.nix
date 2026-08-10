@@ -20,8 +20,9 @@
   ];
   home.shell.enableShellIntegration = true;
   home.shellAliases = {
-    ll = "ls -lh";
-    la = "ls -lah";
+    ls = "ls --color=auto";
+    ll = "ls -lh --color=auto";
+    la = "ls -lah --color=auto";
     v = "nvim";
     c = "clear";
     df = "df -h";
@@ -32,6 +33,7 @@
     md = "mkdir -pv";
     path = "echo -e \${PATH//:/\\\\n}";
     rm = "rm --preserve-root";
+    origsh = "ssh localhost";
 
     # TODO: this should be for nixos only
     nis = "sudo nixos-rebuild switch --flake .";
@@ -51,6 +53,11 @@
       "erasedups"
     ];
     historySize = 10000;
+    initExtra = ''
+      if [ -f ~/.bashrc.local ]; then
+          . ~/.bashrc.local
+      fi
+    '';
   };
 
   programs.zsh = {

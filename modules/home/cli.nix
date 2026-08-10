@@ -76,7 +76,7 @@
       nvim-cmp
       cmp-buffer
       cmp-path
-      # cmp-luasnip # ERROR no such package
+      cmp_luasnip
       lspkind-nvim
       cmp-nvim-lsp
       oil-nvim

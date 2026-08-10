@@ -14,6 +14,8 @@
       loader.systemd-boot.enable = true;
       loader.efi.canTouchEfiVariables = false;
 
+      binfmt.emulatedSystems = [ "x86_64-linux" ];
+
       # The only thing that prevents greeter screen from corruption
       # Force a "quiet" boot sequence and strictly clamp the system log levels
       kernelParams = [

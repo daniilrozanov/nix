@@ -1,6 +1,6 @@
-vim.lsp.config('*', { root_makers = { '.git' } })
+vim.lsp.config("*", { root_makers = { ".git" } })
 
-vim.lsp.enable({ 'clangd', 'lua_ls' })
+vim.lsp.enable { "clangd", "lua_ls", "nixd" }
 
 --Probably I dont need this :\
 -- vim.api.nvim_create_autocmd('LspAttach', {

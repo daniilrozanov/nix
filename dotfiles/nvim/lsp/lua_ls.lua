@@ -1,20 +1,20 @@
 return {
-  cmd = { 'lua-language-server' },
+  cmd = { "lua-language-server" },
   root_makers = {
-    '.luarc.json',
-    '.luarc.jsonc',
-    '.luacheckrc',
-    '.stylua.toml',
-    'stylua.toml',
-    'selene.toml',
-    'selene.yml',
+    ".luarc.json",
+    ".luarc.jsonc",
+    ".luacheckrc",
+    ".stylua.toml",
+    "stylua.toml",
+    "selene.toml",
+    "selene.yml",
   },
-  filetypes = { 'lua' },
+  filetypes = { "lua" },
   settings = {
     Lua = {
       runtime = {
-        version = 'LuaJIT',
-      }
-    }
-  }
+        version = "LuaJIT",
+      },
+    },
+  },
 }

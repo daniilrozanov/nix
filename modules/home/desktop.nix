@@ -36,7 +36,6 @@
       vlc
 
       # cursor themes
-      volantes-cursors
       bibata-cursors
 
       # Rofi plugins

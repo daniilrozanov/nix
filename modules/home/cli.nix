@@ -76,7 +76,7 @@
       nvim-cmp
       cmp-buffer
       cmp-path
-      cmp_luasnip
+      # cmp_luasnip
       lspkind-nvim
       cmp-nvim-lsp
       oil-nvim

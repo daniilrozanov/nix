@@ -4,7 +4,7 @@ local oil = require "oil"
 
 oil.setup {}
 
-vim.keymap.set("n", "<leader>e", oil.open)
+vim.keymap.set("n", "<leader>o", oil.open, { desc = "Explorer" })
 
 vim.api.nvim_create_autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("TerminalKeymaps", { clear = true }),

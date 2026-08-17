@@ -7,6 +7,14 @@ vim.api.nvim_create_autocmd("TermOpen", {
     opt.number = false
     opt.relativenumber = false
     opt.scrolloff = 0
+    vim.keymap.set("n", "gf", function()
+      local file = vim.fn.expand "<cfile>"
+      if #file == 0 or not file then
+        return
+      end
+      vim.cmd "hide"
+      vim.cmd("edit " .. vim.fn.fnameescape(file))
+    end, { desc = "Open file under cursor" })
   end,
 })
 

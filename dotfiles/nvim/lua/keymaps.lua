@@ -10,7 +10,7 @@ set("n", "<c-h>", "<c-w><c-h>")
 
 set("n", "<leader>wv", "<cmd>vsplit<cr>")
 set("n", "<leader>ws", "<cmd>split<cr>")
-set("n", "<leader>ww", "<cmd>w<cr>", { desc = "Write buffer" })
+set("n", "<leader><leader>", "<cmd>w<cr>", { desc = "Write buffer" })
 
 set("n", "<leader>q", "<cmd>q<cr>", { desc = "Quit window" })
 
@@ -29,13 +29,15 @@ end, { expr = true })
 set("n", "grt", vim.lsp.buf.type_definition, { desc = "Go to type definition" })
 set("n", "gd", vim.lsp.buf.definition)
 set("n", "gD", vim.lsp.buf.declaration)
+
 --ui
 local toggle = function(obj)
   return function()
     obj.enable(not obj.is_enabled())
   end
 end
-set("n", "<leader>uh", toggle(vim.lsp.inlay_hint), { desc = "Toggle inlay hints" })
-set("n", "<leader>ud", toggle(vim.diagnostic), { desc = "Toggle inlay hints" })
+
+set("n", "<leader>th", toggle(vim.lsp.inlay_hint), { desc = "Toggle inlay hints" })
+set("n", "<leader>td", toggle(vim.diagnostic), { desc = "Toggle diagnostic" })
 
 set("t", "<C-n>", [[<C-\><C-n>]], { silent = true })

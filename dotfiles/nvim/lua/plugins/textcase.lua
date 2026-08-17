@@ -1,6 +1,1 @@
-return {
-  "johmsalas/text-case.nvim",
-  dependencies = { "nvim-telescope/telescope.nvim" },
-  config = true,
-  lazy = false,
-}
+-- require("text-case").setup {} -- not in nixpkgs :(

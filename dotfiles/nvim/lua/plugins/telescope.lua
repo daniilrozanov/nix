@@ -72,4 +72,4 @@ vim.keymap.set("n", "<leader>fa", function()
   ---@diagnostic disable-next-line: param-type-mismatch
   builtin.find_files { cwd = vim.fs.joinpath(vim.fn.stdpath "data", "lazy") }
 end)
-vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>gc", builtin.git_commits, { desc = "Find existing buffers" })

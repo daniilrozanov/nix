@@ -21,4 +21,9 @@ M.term_cwd = function(bufnr)
   end
 end
 
+M.reload = function(modulename)
+  package.loaded[modulename] = nil
+  return require(modulename)
+end
+
 return M

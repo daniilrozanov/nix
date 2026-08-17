@@ -99,6 +99,12 @@
       telescope-ui-select-nvim
       diffview-nvim
       neogit
+
+      # theme
+      vscode-nvim
+      kanagawa-nvim
+      koda-nvim
+
       nvim-treesitter-parsers.nix
       nvim-treesitter-parsers.c
       nvim-treesitter-parsers.cpp
@@ -127,9 +133,6 @@
       nvim-treesitter-parsers.meson
       nvim-treesitter-parsers.query
       nvim-treesitter-parsers.http
-    ];
-    extraPackages = with pkgs; [
-      # formatters and stuff probably?
     ];
   };
 

@@ -38,4 +38,4 @@ vim.opt.laststatus = 3
 
 vim.diagnostic.config { virtual_text = true, virtual_line = false }
 
-vim.cmd "colorscheme koda-moss"
+vim.cmd "colorscheme vscode"

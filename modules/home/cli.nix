@@ -17,6 +17,8 @@
     direnv
     nix-direnv
     bc
+    nixd
+    nixfmt
   ];
   home.shell.enableShellIntegration = true;
   home.shellAliases = {
@@ -46,6 +48,9 @@
     EDITOR = "nvim";
     FCEDIT = "nvim";
   };
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 
   programs.bash = {
     enable = true;
@@ -99,6 +104,7 @@
       telescope-ui-select-nvim
       diffview-nvim
       neogit
+      render-markdown-nvim
 
       # theme
       vscode-nvim
@@ -127,6 +133,7 @@
       nvim-treesitter-parsers.html
       nvim-treesitter-parsers.css
       nvim-treesitter-parsers.markdown
+      nvim-treesitter-parsers.markdown_inline
       nvim-treesitter-parsers.latex
       nvim-treesitter-parsers.make
       nvim-treesitter-parsers.cmake

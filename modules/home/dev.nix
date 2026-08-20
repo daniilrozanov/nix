@@ -8,14 +8,17 @@
   options.development.enable = lib.mkEnableOption "Enable development module";
   config = lib.mkIf config.development.enable {
     home.packages = with pkgs; [
-      nixd
-      nixfmt
       lua-language-server
       stylua
       bash-language-server
       python3
       shfmt
       fnlfmt
+
+      # forge's cli clients
+      gh
+      glab
+      forgejo-cli
 
       qmk
     ];

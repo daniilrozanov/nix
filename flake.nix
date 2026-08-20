@@ -27,9 +27,6 @@
     }@inputs:
     let
       system = "aarch64-linux";
-      pkgs-stable = import nixpkgs-stable {
-        inherit system;
-      };
     in
     {
       nixosConfigurations.moon = nixpkgs.lib.nixosSystem {

@@ -15,25 +15,31 @@
       thunar
       calibre
       telegram-desktop
+
+      # Graphic viewers
       imv
       mpv
-      playerctl
+      vlc
       img
+
       keepassxc
       thunderbird
-      plantuml # move to somewhere
+      plantuml
       pavucontrol
-      localsend
       zathura
       transmission_4-gtk
+      playerctl
+
+      # Music Players
+      cantata
       euphonica
+      mpc
+
       gimp
       darktable
-      mpc
       pinentry-all
       gnupg
       w3m
-      vlc
       gparted-full
 
       # cursor themes

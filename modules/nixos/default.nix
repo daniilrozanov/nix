@@ -66,6 +66,10 @@
 
       brightnessctl
 
+      exfatprogs
+      ntfs3g
+      btrfs-progs
+
       home-manager
     ];
 

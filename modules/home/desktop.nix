@@ -34,6 +34,7 @@
       gnupg
       w3m
       vlc
+      gparted-full
 
       # cursor themes
       bibata-cursors

@@ -19,6 +19,8 @@
     bc
     nixd
     nixfmt
+    tshark
+    termshark
   ];
   home.shell.enableShellIntegration = true;
   home.shellAliases = {
@@ -105,6 +107,8 @@
       diffview-nvim
       neogit
       render-markdown-nvim
+      orgmode
+      org-roam-nvim
 
       # theme
       vscode-nvim

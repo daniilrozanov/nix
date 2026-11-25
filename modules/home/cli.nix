@@ -21,6 +21,9 @@
     nixfmt
     tshark
     termshark
+    pandoc
+    opencode
+    p7zip
   ];
   home.shell.enableShellIntegration = true;
   home.shellAliases = {

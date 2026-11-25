@@ -40,7 +40,10 @@
         ];
       };
       homeConfigurations.chell = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.${system};
+        pkgs = import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+        };
         modules = [
           ./users/chell
           ./modules/home

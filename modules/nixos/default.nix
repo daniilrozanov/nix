@@ -61,6 +61,7 @@
       vim
       wget
       killall
+      pipewire.jack # TODO: make enable when pipewire.jack.enable = true and remove
 
       keyd # maybe move
 
@@ -125,8 +126,10 @@
     i18n.defaultLocale = "en_US.UTF-8";
 
     services.pulseaudio.enable = false;
+    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
+      jack.enable = true;
       pulse.enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;

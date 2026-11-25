@@ -13,8 +13,10 @@
       librewolf
       chromium
       thunar
-      calibre
+      # calibre # failed to build!!
       telegram-desktop
+      libreoffice
+      alacritty
 
       # Graphic viewers
       imv
@@ -41,6 +43,47 @@
       gnupg
       w3m
       gparted-full
+
+      # Music
+
+      # DAWs
+      lmms
+      ardour
+      # bitwig-studio # unfree and not in aarch64-linux
+      reaper # unfree
+      reaper-reapack-extension
+      reaper-sws-extension
+
+      qjackctl
+      qpwgraph
+      friture
+      audacity
+      musescore
+      neothesia
+      carla
+      qsynth
+      metronome
+      # cadence # TODO: not in nispkgs as well as many kx.studio programs
+
+      # VST
+      cardinal # TODO: not installed as app
+      zynaddsubfx
+      helm
+      dexed # TODO: not installed as app
+      # surge-xt # broken
+      zam-plugins
+      tap-plugins
+      # x42-plugins # not in aarch64-linux
+      zita-at1
+      sfizz-ui
+
+      # surge-xt # barely working
+      # vital # unfree and not in aarch64-linux
+      # odin2 # not in aarch64-linux
+      lsp-plugins
+      # airwave # not in aarch64-linux
+      # surge # not in aarch64-linux
+      # polyphone # it is broken, do something with that
 
       # cursor themes
       bibata-cursors
@@ -69,6 +112,7 @@
       hypridle
       hyprlock
       hyprcursor
+      xlsclients
     ];
 
     programs.htop = {

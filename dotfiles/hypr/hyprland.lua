@@ -1,3 +1,13 @@
+-- TODO: try to make hyprland keep env variable instead of setting it manually
+-- Now hyprland removes variables that was set by nix conf (looks like error).
+-- So to be removed in future
+hl.env("LD_LIBRARY_PATH", "/run/current-system/sw/lib/pipewire")
+
+-- XWayland apps scale factor
+hl.env("GDK_SCALE", "2")
+hl.env("QT_AUTO_SCREEN_SCALE_FACTOR", "2")
+hl.env("QT_ENABLE_HIGHDPI_SCALING", "1")
+
 hl.monitor({
   output = "",
   mode = "preferred",
@@ -110,6 +120,10 @@ hl.config({
 
   cursor = {
     inactive_timeout = 60,
+  },
+
+  xwayland = {
+    force_zero_scaling = true,
   },
 
   misc = {

@@ -24,6 +24,16 @@
     pandoc
     opencode
     p7zip
+
+    # ai
+    # kilocode-cli # broken
+    qwen-code
+    opencode
+    deepseek-harness
+    # claude-code
+    # claude-code-router
+    # claude-agent-acp
+    # claude-mergetool
   ];
   home.shell.enableShellIntegration = true;
   home.shellAliases = {
